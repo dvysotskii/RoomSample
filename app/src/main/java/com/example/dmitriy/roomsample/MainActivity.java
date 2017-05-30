@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < shopsJsonArray.length(); i++) {
                 JSONObject shopJsonObj = shopsJsonArray.getJSONObject(i);
                 Shop shop = gson.fromJson(shopJsonObj.toString(), Shop.class);
+                shop.setTest(new Test("123"));
                 shopList.add(shop);
             }
         } catch (JSONException e) {
@@ -63,23 +64,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void queryShopSample() {
-        Observable<Double> booleanObservable = Observable.fromCallable(new Callable<Double>() {
+        Observable<Shop> booleanObservable = Observable.fromCallable(new Callable<Shop>() {
             @Override
-            public Double call() throws Exception {
+            public Shop call() throws Exception {
                 return App.getInstance().getRoomDb().shopDao().queryShopById(53618);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        booleanObservable.subscribe(new Observer<Double>() {
+        booleanObservable.subscribe(new Observer<Shop>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 
             }
 
             @Override
-            public void onNext(@NonNull Double aBoolean) {
-                Log.d("3452 11111", "onNext" + aBoolean);
+            public void onNext(@NonNull Shop aBoolean) {
+                Log.d("3452 11111", "onNext" + aBoolean.getTest().getNameTest());
             }
 
             @Override

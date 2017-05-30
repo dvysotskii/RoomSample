@@ -2,6 +2,7 @@ package com.example.dmitriy.roomsample;
 
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -29,6 +30,8 @@ public class Shop {
     private String plastic;
     private String modification;
     private boolean isFavorite;
+    @Embedded
+    private Test test;
 
     public int getId() {
         return id;
@@ -117,4 +120,13 @@ public class Shop {
     public void setPlastic(String plastic) {
         this.plastic = plastic;
     }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
 }
+

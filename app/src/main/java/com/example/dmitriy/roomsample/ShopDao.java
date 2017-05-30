@@ -16,8 +16,8 @@ public interface ShopDao {
     @Query("SELECT * FROM " + Shop.TABLE_NAME)
     List<Shop> queryForAll();
 
-    @Query("SELECT name FROM " + Shop.TABLE_NAME + " WHERE id = :shopId")
-    double queryShopById(long shopId);
+    @Query("SELECT * FROM " + Shop.TABLE_NAME + " WHERE id = :shopId")
+    Shop queryShopById(long shopId);
 
     @Insert
     long create(Shop shop);
